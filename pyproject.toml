@@ -1,0 +1,13 @@
+[project]
+name = "company-scrapper"
+version = "0.1.0"
+description = "A tool to scrape company data and summarize it using AI"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "requests",
+  "beautifulsoup4",
+  "python-dotenv",
+  "openai",
+  "gradio"
+]
