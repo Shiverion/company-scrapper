@@ -75,8 +75,8 @@ Coming soon on Hugging Face Spaces 🚀
 Want to deploy? Just copy-paste this repo to your own Hugging Face account and you're good to go.
 
 ✨ Author
-Crafted with markdown magic by @Shiverion
-🔗 Portfolio • 💼 LinkedIn • 📧 miqbal.izzulhaq@gmail.com
+Crafted with markdown magic by [@Shiverion](https://github.com/Shiverion)
+💼 [Linkedin](www.linkedin.com/in/izzulhaq-iqbal) • 📧 miqbal.izzulhaq@gmail.com
 
 📄 License
 MIT License — use it, remix it, build on it.
