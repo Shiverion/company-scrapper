@@ -31,6 +31,40 @@ This tool scrapes a company's landing page and uses LLMs (GPT-4o or Gemini 2.5 F
 
 ---
 
+## System Design
+
+### Requirements
+
+- Fetch a submitted company website, extract readable page text, and generate a Markdown brochure.
+- Allow the caller to select GPT-4o or Gemini through the OpenAI-compatible client.
+
+### Pipeline
+
+```text
+Gradio inputs → requests.get(URL) → BeautifulSoup text extraction
+             → model stream (GPT-4o or Gemini 2.5 Flash) → Markdown output
+```
+
+The scraper removes script, style, image, and input elements before sending the remaining page text to the selected model. No page cache or persistence layer is configured.
+
+### Scale and Reliability
+
+- URL fetching and model generation run synchronously in one Gradio request.
+- The current `requests.get` call has no explicit timeout, response-size limit, or public-host allowlist.
+
+### Trade-offs
+
+| Decision | Benefit | Cost |
+| --- | --- | --- |
+| Scrape a URL directly on request | No separate crawler or indexing service | Slow, unavailable, or hostile pages affect each request |
+| Stream generated brochure text | Users see output before generation finishes | The underlying scrape still blocks the first model token |
+
+### What to Revisit
+
+- Restrict fetches to public HTTP(S) destinations and reject private/reserved IPs after DNS resolution.
+- Add fetch timeouts, redirect checks, and a response-size cap.
+- Cache sanitized page text for repeated requests.
+
 ## 📦 Installation
 
 ### 1. Clone the repo
